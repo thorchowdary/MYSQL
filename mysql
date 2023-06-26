@@ -1,0 +1,204 @@
+MYSQL
+-----
+DBMS- database Management system
+software package designed to define, manipulate, retrive and manage the data.
+
+types of databases
+------------------
+1.mysql(oracle etc...)
+2.nosql(mongodb etc...)
+
+different types od database language
+=====================================
+1.DDL(data defination language)
+	ex: create, alter, drop, truncate
+2.DML(data manipulation language)
+	ex: insert, update, delete, insertInto
+3.TCL(transaction control language)
+	ex: commit, rollback, savepoint
+4.DCL(data control language)
+	ex: grant, revoke 
+
+diff between delete and truncate:
+---------------------------------
+drop,truncate -- are DDL commands used to delete the tables in the database these 2
+				 operations cannot be rolle back
+delete  -- it is a DML commands used the delete the row having where clause this can be roll back
+
+Normalization:
+--------------
+Normalization is used to remove the duplicates in the dagtabase, data redundancy, data inconsistency.
+
+types of Normalization:
+-----------------------
+1. 1NF
+2. 2NF
+3. 3NF
+4. BCNF(Boyce & codd normal form)
+
+1. 1NF:
+-------
+rules:
+1. should not contain multivalues attributes
+2. each record should be unique
+
+2. 2NF:
+-------
+rules:
+1.should be in 1NF
+2.every non-prime attributes should be fully functionally dependent on the primary key
+
+3. 3NF
+-------
+1.should be in 2NF
+2.there should be no transitive functional depedency
+
+4.BCNF:
+-------
+1.should be in 3NF
+2.for every functional depedency p -> q, p should be the super key of the table
+
+
+primary key:
+-----------
+unique key
+
+foreign key:
+-----------
+used to link two tables
+* foreign key should be a primary key
+
+JOINS:
+-------
+1.inner join:
+-------------
+will retrive data only when there is matching values in the both tabels
+query:
+-----
+example:
+	select products.name, order.order_time from order inner join products on order.product_id=products.id
+
+2.left join:
+-------------
+will retrive all data from left table and matching data from teh right table.
+query:
+------
+	select o.id,c.phone from customet c left join order o on c.id=o.id order by asc;
+3.rigth join
+-------------
+will retrive all data from right table and matching data from the left tabele.
+query:
+------
+	select o.id,c.phone from customet c left join order o on c.id=o.id order by asc;
+4.self join
+-------------
+used to join the same table itself and findout the records
+
+example:
+---------
+student_table
+	student course
+	s1       c1
+	s2       c2
+	s1       c2
+in this we have to find out, each student, how many courses have been enrolled in,
+for this type of case we use self join
+query:
+-----
+	select from student_table as t1, student_table as t2
+	where t1.student = t2.student and t1.course<> t2.course
+
+
+to modify table:
+-----------------
+we use "alter" command
+alter table tharun
+add column phone bigint(10);
+
+alter table tharun
+drop column phone
+
+rename column name:
+---------------------
+alter table test
+modify "oldname" "newname"
+
+
+mysql functions:
+--------------
+1.concatinate
+	joining data from different coulumns and kept it in a single column
+	
+example:
+we can concatinate first_name, last_name of two different columns as together
+
+	select concat(first_name,last_name) as full_name from customers;
+
+    to give gap between first_name and last_name
+	select concat(first_name," ",last_name) as full_name from customers;
+	
+MySQL provides a wide range of built-in functions that can be used for various purposes, 
+such as manipulating data, performing calculations, formatting values, working with dates and times, and more. 
+Here are some commonly used MySQL functions:
+
+    Mathematical Functions:
+	---------------------------
+        ABS(): Returns the absolute (non-negative) value of a number.
+        ROUND(): Rounds a number to a specified number of decimal places.
+        CEILING(): Returns the smallest integer greater than or equal to a number.
+        FLOOR(): Returns the largest integer less than or equal to a number.
+        RAND(): Generates a random floating-point value between 0 and 1.
+
+    String Functions:
+        CONCAT(): Concatenates two or more strings together.
+        LENGTH(): Returns the length of a string.
+        SUBSTRING(): Extracts a substring from a string.
+        UPPER(): Converts a string to uppercase.
+        LOWER(): Converts a string to lowercase.
+        TRIM(): Removes leading and trailing spaces from a string.
+
+    Date and Time Functions:
+        NOW(): Returns the current date and time.
+        CURDATE(): Returns the current date.
+        CURTIME(): Returns the current time.
+        DATE_FORMAT(): Formats a date or time value.
+        DATE_ADD(): Adds a specified time interval to a date.
+        DATEDIFF(): Calculates the difference between two dates.
+
+    Aggregate Functions:
+        COUNT(): Returns the number of rows that match a specific criterion.
+        SUM(): Calculates the sum of values in a column.
+        AVG(): Calculates the average of values in a column.
+        MIN(): Returns the minimum value in a column.
+        MAX(): Returns the maximum value in a column.
+		
+		
+"IN"
+-----
+select * from customers where last_name in ("Tarun,"kumar,"naidu");
+will get the output of all contain last_name of Tarun kumar naidu
+
+negate of that "not IN"
+select * from customers where last_name not in ("Tarun,"kumar,"naidu");
+
+"BETWEEN"
+----------
+select * from orders where order_time between "2017-01-01" AND "2017-01-07";
+select product_id, customer_id, order_time from orders where customer_id between 5 and 10
+select * from customers where last_name between "a" and "k"
+
+"LIKE" - used for pattern matching
+-------
+find last_name beginning wirh "w"
+
+select * from customers where last_name like "w%"
+ w followed by any number of character
+select * from customers where last_name like "%w%"
+select * from customers where last_name like "%o%"
+
+ORDERBY:
+--------
+ordering the data from lowest to highest and highest to lowest
+
+select * from products orderby price asc;
+select ( from customers orderby last_name asc;
