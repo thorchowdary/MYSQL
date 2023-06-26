@@ -208,7 +208,30 @@ negation of that is "not IN"
 
 ORDER BY:
 --------
-	--> ordering the data from lowest to highest and highest to lowest
+	--> Ordering the data from lowest to highest and highest to lowest
 
 	select * from products order by price asc;
 	select ( from customers order by last_name asc;
+
+interview questions:
+-----------------------
+We have a dept table and we have an employee table where deptid is the foreign key
+here from the dept table.
+how would you print deptid, deptname and count of all the employees in that
+department?
+ANS:
+----
+	SELECT d.deptid, d.deptname, COUNT(e.employeeid) AS employee_count
+	FROM dept d
+	JOIN employee e ON d.deptid = e.deptid
+	GROUP BY d.deptid, d.deptname;
+
+write a query to fetch manager's last name of an employee whose name is Trishala,
+assuming there is one employee with this name.
+ANS:
+----	SELECT m.last_name AS manager_last_name
+	FROM employee e
+	JOIN employee m ON e.manager_id = m.employee_id
+	WHERE e.first_name = 'Trishala';
+
+
