@@ -1,7 +1,7 @@
 MYSQL
 -----
 DBMS- database Management system
-software package designed to define, manipulate, retrive and manage the data.
+software package designed to define, manipulate, retrieve, and manage the data.
 
 types of databases
 ------------------
@@ -10,10 +10,10 @@ types of databases
 
 different types od database language
 =====================================
-1.DDL(data defination language)
+1.DDL(data definition language)
 	ex: create, alter, drop, truncate
 2.DML(data manipulation language)
-	ex: insert, update, delete, insertInto
+	ex: insert, update, delete, insert into
 3.TCL(transaction control language)
 	ex: commit, rollback, savepoint
 4.DCL(data control language)
@@ -21,13 +21,13 @@ different types od database language
 
 diff between delete and truncate:
 ---------------------------------
-drop,truncate -- are DDL commands used to delete the tables in the database these 2
-				 operations cannot be rolle back
-delete  -- it is a DML commands used the delete the row having where clause this can be roll back
+drop, truncate -- are DDL commands used to delete the tables in the database these 2
+				 operations cannot be rolled back
+delete  -- it is a DML command used the delete the row having where clause this can be rolled back
 
 Normalization:
 --------------
-Normalization is used to remove the duplicates in the dagtabase, data redundancy, data inconsistency.
+Normalization is used to remove the duplicates in the database, data redundancy, and data inconsistency.
 
 types of Normalization:
 -----------------------
@@ -38,61 +38,65 @@ types of Normalization:
 
 1. 1NF:
 -------
-rules:
-1. should not contain multivalues attributes
-2. each record should be unique
+ rules:
+   1. should not contain multivalued attributes
+   2. each record should be unique
 
 2. 2NF:
 -------
-rules:
-1.should be in 1NF
-2.every non-prime attributes should be fully functionally dependent on the primary key
+ rules:
+   1. should be in 1NF
+   2. every non-prime attribute should be fully functionally dependent on the primary key
 
 3. 3NF
 -------
-1.should be in 2NF
-2.there should be no transitive functional depedency
+ rules:
+   1. should be in 2NF
+   2. there should be no transitive functional dependency
 
 4.BCNF:
 -------
-1.should be in 3NF
-2.for every functional depedency p -> q, p should be the super key of the table
+ rules:
+   1. should be in 3NF
+   2. for every functional dependency p -> q, p should be the super key of the table
 
 
 primary key:
 -----------
-unique key
+ --> unique key
 
 foreign key:
 -----------
-used to link two tables
-* foreign key should be a primary key
+ -->used to link two tables
+    * foreign key should be a primary key
 
 JOINS:
 -------
-1.inner join:
+1. inner join:
 -------------
-will retrive data only when there is matching values in the both tabels
+	will retrieve data only when there are matching values in both tables
 query:
 -----
 example:
 	select products.name, order.order_time from order inner join products on order.product_id=products.id
 
-2.left join:
+2. left join:
 -------------
-will retrive all data from left table and matching data from teh right table.
+	will retrieve all data from the left table and match data from the right table.
 query:
 ------
-	select o.id,c.phone from customet c left join order o on c.id=o.id order by asc;
-3.rigth join
+	select o.id,c.phone from Customer c left join order o on c.id=o.id order by asc;
+
+3. right join
 -------------
-will retrive all data from right table and matching data from the left tabele.
+	will retrieve all data from the right table and match data from the left table.
 query:
 ------
-	select o.id,c.phone from customet c left join order o on c.id=o.id order by asc;
-4.self join
+	select o.id,c.phone from Customer c left join order o on c.id=o.id order by asc;
+
+4. self join
 -------------
-used to join the same table itself and findout the records
+	used to join the same table itself and find out the records
 
 example:
 ---------
@@ -101,7 +105,7 @@ student_table
 	s1       c1
 	s2       c2
 	s1       c2
-in this we have to find out, each student, how many courses have been enrolled in,
+in this, we have to find out, each student, how many courses have been enrolled in,
 for this type of case we use self join
 query:
 -----
@@ -109,47 +113,50 @@ query:
 	where t1.student = t2.student and t1.course<> t2.course
 
 
-to modify table:
+to modify the table:
 -----------------
-we use "alter" command
-alter table tharun
-add column phone bigint(10);
+	we use the "alter" command
 
-alter table tharun
-drop column phone
+	alter table Tharun
+	add column phone bigint(10);
+
+	alter table Tharun
+	drop column phone
 
 rename column name:
 ---------------------
-alter table test
-modify "oldname" "newname"
+	alter table test
+	modify "old name" "newname"
 
 
-mysql functions:
---------------
-1.concatinate
-	joining data from different coulumns and kept it in a single column
-	
-example:
-we can concatinate first_name, last_name of two different columns as together
-
-	select concat(first_name,last_name) as full_name from customers;
-
-    to give gap between first_name and last_name
-	select concat(first_name," ",last_name) as full_name from customers;
-	
+MySQL functions:
+----------------
 MySQL provides a wide range of built-in functions that can be used for various purposes, 
 such as manipulating data, performing calculations, formatting values, working with dates and times, and more. 
 Here are some commonly used MySQL functions:
 
-    Mathematical Functions:
-	---------------------------
+1. concatenate
+	joining data from different columns and keeping it in a single column
+	
+example:
+we can concatenate first_name, and last_name of two different columns together
+
+	select concat(first_name,last_name) as full_name from customers;
+
+    to give a gap between first_name and last_name
+	select concat(first_name," ",last_name) as full_name from customers;
+
+
+Mathematical Functions:
+---------------------------
         ABS(): Returns the absolute (non-negative) value of a number.
         ROUND(): Rounds a number to a specified number of decimal places.
         CEILING(): Returns the smallest integer greater than or equal to a number.
         FLOOR(): Returns the largest integer less than or equal to a number.
         RAND(): Generates a random floating-point value between 0 and 1.
 
-    String Functions:
+String Functions:
+----------------------
         CONCAT(): Concatenates two or more strings together.
         LENGTH(): Returns the length of a string.
         SUBSTRING(): Extracts a substring from a string.
@@ -157,7 +164,8 @@ Here are some commonly used MySQL functions:
         LOWER(): Converts a string to lowercase.
         TRIM(): Removes leading and trailing spaces from a string.
 
-    Date and Time Functions:
+Date and Time Functions:
+-----------------------------
         NOW(): Returns the current date and time.
         CURDATE(): Returns the current date.
         CURTIME(): Returns the current time.
@@ -165,40 +173,41 @@ Here are some commonly used MySQL functions:
         DATE_ADD(): Adds a specified time interval to a date.
         DATEDIFF(): Calculates the difference between two dates.
 
-    Aggregate Functions:
+Aggregate Functions:
+-----------------------
         COUNT(): Returns the number of rows that match a specific criterion.
         SUM(): Calculates the sum of values in a column.
-        AVG(): Calculates the average of values in a column.
+        AVG(): Calculates the average values in a column.
         MIN(): Returns the minimum value in a column.
         MAX(): Returns the maximum value in a column.
 		
 		
 "IN"
 -----
-select * from customers where last_name in ("Tarun,"kumar,"naidu");
-will get the output of all contain last_name of Tarun kumar naidu
+	select * from customers where last_name in ("Tarun,"Kumar,"Naidu");
+	-->will get the output of all containing the last_name of Tarun Kumar Naidu
 
-negate of that "not IN"
-select * from customers where last_name not in ("Tarun,"kumar,"naidu");
+negation of that is "not IN"
+	select * from customers where last_name is not in ("Tarun,"Kumar,"Naidu");
 
 "BETWEEN"
 ----------
-select * from orders where order_time between "2017-01-01" AND "2017-01-07";
-select product_id, customer_id, order_time from orders where customer_id between 5 and 10
-select * from customers where last_name between "a" and "k"
+	select * from orders where order_time between "2017-01-01" AND "2017-01-07";
+	select product_id, customer_id, order_time from orders where customer_id between 5 and 10
+	select * from customers where last_name between "a" and "k"
 
 "LIKE" - used for pattern matching
 -------
-find last_name beginning wirh "w"
+	--> Find last_name beginning with "w"
 
-select * from customers where last_name like "w%"
- w followed by any number of character
-select * from customers where last_name like "%w%"
-select * from customers where last_name like "%o%"
+	select * from customers where last_name like "w%"
+	 w followed by any number of character
+	select * from customers where last_name like "%w%"
+	select * from customers where last_name like "%o%"
 
-ORDERBY:
+ORDER BY:
 --------
-ordering the data from lowest to highest and highest to lowest
+	--> ordering the data from lowest to highest and highest to lowest
 
-select * from products orderby price asc;
-select ( from customers orderby last_name asc;
+	select * from products order by price asc;
+	select ( from customers order by last_name asc;
