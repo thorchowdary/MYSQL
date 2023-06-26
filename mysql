@@ -74,6 +74,7 @@ JOINS:
 -------
 1. inner join:
 -------------
+	
 	will retrieve data only when there are matching values in both tables
 query:
 -----
